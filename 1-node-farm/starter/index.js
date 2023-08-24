@@ -5,3 +5,11 @@ const fs = require("fs");
 // console.log(readData);
 
 // fs.writeFileSync("./txt/input.txt",`${readData}`);
+
+//Server
+
+const http = require("http");
+
+http.createServer((req,res) => {
+    res.end("Hey from the server");
+})
