@@ -9,10 +9,26 @@ const fs = require("fs");
 //Server
 
 const http = require("http");
+const path = require("path");
+const url  = require("url")
 
 const server = http.createServer((req,res) => {
-    console.log(req);
-    res.end("Hey from the server");
+    // console.log(req);
+
+    const pathName = req.url;
+    if(pathName === '/' || pathName === '/overview'){
+        res.end("This is overview");
+    }else if(pathName === '/product'){
+        res.end("This is product route")
+    }else{
+        res.writeHead(404,{
+            'Content-type' : 'text/html',
+            'my-header' : "This route doesn't exists"
+        })
+        res.end("Page not found")
+    }
+
+    // res.end("Hey from the server");
 })
 
 server.listen(8000,'127.0.0.1', () => {
